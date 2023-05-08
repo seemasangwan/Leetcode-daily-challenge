@@ -1,0 +1,47 @@
+approach 1:
+class Solution {
+public:
+    int diagonalSum(vector<vector<int>>& mat) 
+    {
+    int n=mat.size();
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(i+j==n-1)
+                    sum=sum+mat[i][j];
+                else if(i==j) sum=sum+mat[i][j];
+            }
+        }
+        return sum;
+    }
+        
+};
+approach2:
+class Solution {
+public:
+    int diagonalSum(vector<vector<int>>& mat) 
+    {
+    int n=mat.size();
+    vector<vector<int>>visit(n,vector<int>(n,0));
+        int sum=0;
+        int j=0;
+        for(int i=0;i<n;i++)
+        {
+            visit[i][j]=1;
+             sum=sum+mat[i][j];
+             j++;
+        }
+           j=n-1;
+            for(int i=0;i<n;i++)
+            {
+                if(!visit[i][j])
+                sum=sum+mat[i][j];
+                visit[i][j]=1;
+                j--;
+            }
+        return sum;
+    }
+        
+};
